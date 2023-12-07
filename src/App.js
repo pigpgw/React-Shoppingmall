@@ -1,16 +1,15 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { Button, Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
+import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import data from './data'
 
 function App() {
 
-  let [shoes,setShoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
 
   return (
     <div className="App">
-      <p>{shoes[0].id}</p>
       <Navbar bg="light" data-bs-theme="light">
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
@@ -23,13 +22,15 @@ function App() {
       </Navbar>
 
       <div className='main-bg'></div>
-      
+
       <div className='container'>
-        <Row>
-          {data.map((item) => (
-            <Card item={item}/>
-          ))}
-        </Row>
+        <div className='row'>
+          {
+            shoes.map((item, index) => (
+              <Card item={item} index={index} />
+            ))
+          }
+        </div>
       </div>
 
 
@@ -38,13 +39,13 @@ function App() {
   );
 }
 
-function Card(props){
+function Card(props) {
   return (
-    <Col>
-      <img src={process.env.PUBLIC_URL + '/shoes1.jpg'} width="80%" />
+    <div className='col-md-4'>
+      <img src={'./shoes' + (props.index + 1) + '.jpg'} width="80%" />
       <h4>{props.item.title}</h4>
       <p>{props.item.price}</p>
-    </Col>
+    </div>
   )
 }
 
