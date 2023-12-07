@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>     {shoes[0].id}</p>
+      <p>{shoes[0].id}</p>
       <Navbar bg="light" data-bs-theme="light">
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
