@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import data from './data'
+import { Routes, Route, Link  } from 'react-router-dom'
+import Detail from './pages/detail';
+import Card from './components/Card';
 
 function App() {
 
@@ -14,39 +17,40 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link to={"/"}>홈</Nav.Link>
             <Nav.Link href="#features">Cart</Nav.Link>
             <Nav.Link href="#pricing">Shoes</Nav.Link>
+      
+            <Link to={"/detail"}>상세 페이지</Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <div className='main-bg'></div>
+      <Routes>
+        <Route path='/' element={
+          <>
+            <div className='main-bg'></div>
 
-      <div className='container'>
-        <div className='row'>
-          {
-            shoes.map((item, index) => (
-              <Card item={item} index={index} />
-            ))
-          }
-        </div>
-      </div>
-
-
-
+            <div className='container'>
+              <div className='row'>
+                {
+                  shoes.map((item, index) => (
+                    <Card item={item} index={index} />
+                  ))
+                }
+              </div>
+            </div>
+          </>
+        }> </Route>
+        <Route path='/detail' element={
+          <>
+            <Detail />
+          </>
+        } />
+        <Route path='about' element={<div>어바웃 페이지임</div>} />
+      </Routes>
     </div>
   );
-}
-
-function Card(props) {
-  return (
-    <div className='col-md-4'>
-      <img src={'./shoes' + (props.index + 1) + '.jpg'} width="80%" />
-      <h4>{props.item.title}</h4>
-      <p>{props.item.price}</p>
-    </div>
-  )
 }
 
 export default App;
