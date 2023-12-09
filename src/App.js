@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import data from './data'
-import { Routes, Route, Link, useNavigate  } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet  } from 'react-router-dom'
 import Detail from './pages/detail';
 import Card from './components/Card';
 
@@ -45,30 +45,10 @@ function App() {
 
         <Route path='/detail' element={<><Detail/></>} />
         <Route path='*' element={<div>없는 페이지</div>} />
-
-        {/* Nested Routes */}
-        <Route path='/about' element={<About />} >
-          <Route path='member' element={<About />} />
-          <Route path='location' element={<About />} />
-        </Route >
-
-        {/* <Route path='/about' element={<></>} />
-        <Route path='/about/member' element={<></>} />
-        <Route path='/about/loc' element={<></>} /> */}
-
-        
       </Routes>
     </div>
   );
-
-    function About(){
-      return (
-        <div>
-          <h4>회사정보</h4>
-        </div>
-      )
-    }
-
 }
 
 export default App;
+
