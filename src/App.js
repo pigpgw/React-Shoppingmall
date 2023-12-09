@@ -8,9 +8,14 @@ import Detail from './pages/detail';
 import Card from './components/Card';
 
 function App() {
-
+  let navigate = useNavigate();
   let [shoes, setShoes] = useState(data);
-  let navigate =  useNavigate();
+
+  function sortItem(){
+    let list = [...shoes];
+    list.sort((a, b) => a.title.localeCompare(b.title));
+    setShoes(list);
+  }
 
   return (
     <div className="App">
@@ -29,7 +34,9 @@ function App() {
         <Route path='/' element={
           <>
             <div className='main-bg'></div>
-
+            <div>
+              <button onClick={sortItem}>이름순 정렬</button>
+            </div>
             <div className='container'>
               <div className='row'>
                 {
@@ -43,8 +50,10 @@ function App() {
         }> 
         </Route>
 
-        <Route path='/detail' element={<><Detail/></>} />
         <Route path='*' element={<div>없는 페이지</div>} />
+        {/* 여러개 페이지 만들기 */}
+        <Route path='/detail/:id' element={<><Detail shoes={shoes}/></>} />
+
       </Routes>
     </div>
   );
