@@ -11,6 +11,7 @@ import axios from 'axios'
 function App() {
   let navigate = useNavigate();
   let [shoes, setShoes] = useState(data);
+  let [getDataClick, setGetDataClick] = useState(0);
 
   function sortItem() {
     let list = [...shoes];
@@ -47,20 +48,38 @@ function App() {
                 }
               </div>
             </div>
-            <button onClick={() => {
-              axios.get('https://codingapple1.github.io/shop/data2.json')
-                .then((data) =>{ 
-                  console.log("data",data.data);
-                  let list = [...shoes];
-                  data.data.forEach(item => {
-                    list.push(item)
-                  });
-                  setShoes(list);
-                })
-                .catch(() => {
-                  console.log('실패')
-                })
-            }}>더보기</button>
+            
+            {!(getDataClick == 3) && (
+              <button onClick={() => {
+                console.log("getDataClick", getDataClick);
+                setGetDataClick(getDataClick + 1)
+                console.log("getDataClick", getDataClick);
+                if (getDataClick == 0) {
+                  axios.get('https://codingapple1.github.io/shop/data2.json')
+                    .then((data) => {
+                      console.log("data", data.data);
+                      let list = [...shoes, ...data.data];
+                      setShoes(list);
+                    })
+                    .catch(() => {
+                      console.log('실패')
+                    })
+                } else if (getDataClick == 1) {
+                  axios.get('https://codingapple1.github.io/shop/data3.json')
+                    .then((data) => {
+                      console.log("data", data.data);
+                      let list = [...shoes, ...data.data];
+                      setShoes(list);
+                    })
+                    .catch(() => {
+                      console.log('실패')
+                    })
+                } else {
+
+                }
+
+              }}>더보기</button>
+            )}
           </>
         }>
         </Route>
