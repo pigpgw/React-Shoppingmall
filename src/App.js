@@ -51,11 +51,16 @@ function App() {
               axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((data) =>{ 
                   console.log("data",data.data);
+                  let list = [...shoes];
+                  data.data.forEach(item => {
+                    list.push(item)
+                  });
+                  setShoes(list);
                 })
                 .catch(() => {
                   console.log('실패')
                 })
-            }}>버튼</button>
+            }}>더보기</button>
           </>
         }>
         </Route>
