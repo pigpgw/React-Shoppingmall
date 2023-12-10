@@ -3,15 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import data from './data'
-import { Routes, Route, Link, useNavigate, Outlet  } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './pages/detail';
 import Card from './components/Card';
+import axios from 'axios'
 
 function App() {
   let navigate = useNavigate();
   let [shoes, setShoes] = useState(data);
 
-  function sortItem(){
+  function sortItem() {
     let list = [...shoes];
     list.sort((a, b) => a.title.localeCompare(b.title));
     setShoes(list);
@@ -46,14 +47,21 @@ function App() {
                 }
               </div>
             </div>
+            <button onClick={() => {
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((data) =>{ 
+                  console.log("data",data.data);
+                })
+                .catch(() => {
+                  console.log('실패')
+                })
+            }}>버튼</button>
           </>
-        }> 
+        }>
         </Route>
-
         <Route path='*' element={<div>없는 페이지</div>} />
         {/* 여러개 페이지 만들기 */}
-        <Route path='/detail/:id' element={<><Detail shoes={shoes}/></>} />
-
+        <Route path='/detail/:id' element={<><Detail shoes={shoes} /></>} />
       </Routes>
     </div>
   );

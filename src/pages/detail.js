@@ -42,8 +42,6 @@ export default function Detail(props) {
                     2초이내 구매시 할인
                 </div>
             )}
-            {count}
-            <button onClick={() => { setCount(count + 1) }}>버튼</button>
             <div className="row">
                 <div className="col-md-6">
                     <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
