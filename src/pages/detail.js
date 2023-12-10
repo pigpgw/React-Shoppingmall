@@ -6,23 +6,21 @@ import { Nav } from 'react-bootstrap';
 
 export default function Detail(props) {
 
-    let a = setTimeout(() => {
-        setAlert(false)
-    }, 2000)
-
-    let [count, setCount] = useState(0);
     let [alert , setAlert] = useState(true);
     let [countNumber , setCountNumber] = useState("")
     let [alertCountInput, setAlertCountInput ] = useState(false);
+    let [tap , setTap] = useState();
+    let [ani, setAni] = useState("");
     let { id } = useParams();
 
-
     useEffect(() => {
-       //  유즈 이펙트 전에 실행되는 코드
-       return () => {
-        clearTimeout(a);
-       }
-    }, [count])
+        setTimeout(() => {
+            setAni('end')
+        }, 100)
+        return () => {
+            setAni('');
+        }
+    },[])
 
     useEffect(() => {
         console.log(countNumber);
@@ -37,7 +35,7 @@ export default function Detail(props) {
     let findItem = props.shoes.filter((item) => item.id === Number(id))[0];
 
     return (
-        <div className="container">
+        <div className={`container start ` + ani}>
             {alert && ( 
                 <div className="alert alert-warning">
                     2초이내 구매시 할인
@@ -60,18 +58,37 @@ export default function Detail(props) {
                 </div>
             </div>
 
-            <Nav defaultActiveKey="/home" as="ul">
-                <Nav.Item as="li">
-                    <Nav.Link href="/home">Active</Nav.Link>
+            <Nav variant="tabs" defaultActiveKey="link0">
+                <Nav.Item>
+                    <Nav.Link onClick={() => { setTap(0) }}  eventKey="link0">버튼0</Nav.Link>
                 </Nav.Item>
-                <Nav.Item as="li">
-                    <Nav.Link eventKey="link-1">Link</Nav.Link>
+                <Nav.Item>
+                    <Nav.Link onClick={() => {setTap(1)}} eventKey="link1">버튼1</Nav.Link>
                 </Nav.Item>
-                <Nav.Item as="li">
-                    <Nav.Link eventKey="link-2">Link</Nav.Link>
+                <Nav.Item>
+                    <Nav.Link onClick={() => { setTap(2) }} eventKey="link2">버튼2</Nav.Link>
                 </Nav.Item>
             </Nav>
 
+            <TabContent tap={tap}/>
         </div>
     )
 };
+
+function TabContent({tap}) {
+
+    let [ani,setAni] = useState('');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setAni('end')
+        },100)
+        return () => {
+            setAni('');
+        }
+    },[tap])
+
+    return <div className={`start ` + ani}>
+        {[<div>내용</div>, <div>내용1</div>, <div>내용2</div>][tap]}
+    </div>
+}
