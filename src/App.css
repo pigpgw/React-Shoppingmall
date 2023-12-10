@@ -6,6 +6,20 @@
   height: 400px;
 }
 
+.sortBtnContainer{
+  width: 100%;
+  text-align: right;
+}
+
+.sortBtn{
+  margin: 20px;
+  padding: 7px;
+  border: 0;
+  background-color: black;
+  color: white;
+  font-weight: 800;
+}
+
 .App {
   text-align: center;
 }

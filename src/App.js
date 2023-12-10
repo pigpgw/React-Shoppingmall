@@ -34,8 +34,8 @@ function App() {
         <Route path='/' element={
           <>
             <div className='main-bg'></div>
-            <div>
-              <button onClick={sortItem}>이름순 정렬</button>
+            <div className='sortBtnContainer'>
+              <button className='sortBtn' onClick={sortItem}>이름순 정렬</button>
             </div>
             <div className='container'>
               <div className='row'>
