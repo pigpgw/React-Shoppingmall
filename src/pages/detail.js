@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from 'react-bootstrap';
 
+import {Context1} from './../App.js';
 
 
 export default function Detail(props) {
+
+    let {stocks , shoes} = useContext(Context1);
 
     let [alert , setAlert] = useState(true);
     let [countNumber , setCountNumber] = useState("")
@@ -41,6 +44,8 @@ export default function Detail(props) {
                     2초이내 구매시 할인
                 </div>
             )}
+
+            {stocks}
             <div className="row">
                 <div className="col-md-6">
                     <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
@@ -70,7 +75,7 @@ export default function Detail(props) {
                 </Nav.Item>
             </Nav>
 
-            <TabContent tap={tap}/>
+            <TabContent shoes={props.shoes} tap={tap}/>
         </div>
     )
 };
@@ -78,6 +83,7 @@ export default function Detail(props) {
 function TabContent({tap}) {
 
     let [ani,setAni] = useState('');
+    let { stocks, shoes } = useContext(Context1);
 
     useEffect(() => {
         setTimeout(() => {
@@ -89,6 +95,6 @@ function TabContent({tap}) {
     },[tap])
 
     return <div className={`start ` + ani}>
-        {[<div>내용</div>, <div>내용1</div>, <div>내용2</div>][tap]}
+        {[<div>{stocks}</div>, <div>내용1</div>, <div>내용2</div>][tap]}
     </div>
 }

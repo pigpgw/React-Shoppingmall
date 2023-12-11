@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import data from './data'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
@@ -8,10 +8,14 @@ import Detail from './pages/detail';
 import Card from './components/Card';
 import axios from 'axios'
 
+export let Context1 = createContext()
+
 function App() {
   let navigate = useNavigate();
   let [shoes, setShoes] = useState(data);
   let [getDataClick, setGetDataClick] = useState(0);
+
+  let [stocks , setStocks] = useState([10, 11, 12])
 
   function sortItem() {
     let list = [...shoes];
@@ -85,7 +89,11 @@ function App() {
         </Route>
         <Route path='*' element={<div>없는 페이지</div>} />
         {/* 여러개 페이지 만들기 */}
-        <Route path='/detail/:id' element={<><Detail shoes={shoes} /></>} />
+        <Route path='/detail/:id' element={
+          <Context1.Provider value= {{ stocks, shoes }}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+        } />
       </Routes>
     </div>
   );
