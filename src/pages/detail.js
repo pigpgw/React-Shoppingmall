@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { addStock } from "../stockSlice";
 
 
 
 export default function Detail(props) {
+    let dispatch = useDispatch();
 
     let [alert , setAlert] = useState(true);
     let [countNumber , setCountNumber] = useState("")
@@ -54,7 +57,15 @@ export default function Detail(props) {
                     <div>{findItem.id}</div>
                     <p>{findItem.content}</p>
                     <p>{findItem.price}원</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button className="btn btn-danger" onClick={() => {
+                        // dispatch(addStock())
+                        const data = {};
+                        data.id = findItem.id;
+                        data.name = findItem.title;
+                        data.count = Number(countNumber);
+                        dispatch(addStock(data));
+                        console.log("넘겨줄 데이터 체크",data)
+                    }}>주문하기</button>
                 </div>
             </div>
 

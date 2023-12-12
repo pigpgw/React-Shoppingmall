@@ -15,12 +15,19 @@ let stock = createSlice({
             const target = state.filter((item) => item.id == index)[0]
             console.log("target", JSON.parse(JSON.stringify(target)))
             target.count += 1;
+        },
+
+        addStock(state , a){
+            console.log("hi");
+            state.push(a.payload)
+            console.log("push data check",)
+            console.log("장바구니 추가 후", JSON.parse(JSON.stringify(state)))
         }
     }
 
 }
 )
 
-export let { addCount } = stock.actions;
+export let { addCount, addStock } = stock.actions;
 
 export default stock

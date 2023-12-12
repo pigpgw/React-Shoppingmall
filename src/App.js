@@ -28,6 +28,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link onClick={(() => { navigate('/') })}>홈</Nav.Link>
             <Nav.Link onClick={(() => { navigate('/detail') })}>Detail</Nav.Link>
+            <Nav.Link onClick={(() => { navigate('/cart') })}>Cart</Nav.Link>
             {/* <Nav.Link onClick={(() => { navigate(-1) })}>뒤로가기</Nav.Link> */}
           </Nav>
         </Container>
