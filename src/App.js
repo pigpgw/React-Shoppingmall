@@ -7,6 +7,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './pages/detail';
 import Card from './components/Card';
 import axios from 'axios'
+import Cart from './pages/Cart'
 
 function App() {
   let navigate = useNavigate();
@@ -86,6 +87,9 @@ function App() {
         <Route path='*' element={<div>없는 페이지</div>} />
         {/* 여러개 페이지 만들기 */}
         <Route path='/detail/:id' element={<><Detail shoes={shoes} /></>} />
+
+        <Route path='/cart' element={<Cart/>} />
+
       </Routes>
     </div>
   );
