@@ -29,7 +29,6 @@ function App() {
                 <Route path='/' element={
                     <>
                         <div className='main-bg'></div>
-
                         <div className='container'>
                             <div className='row'>
                                 {
@@ -46,9 +45,6 @@ function App() {
                 <Route path='/detail' element={<><Detail /></>} />
                 <Route path='*' element={<div>없는 페이지</div>} />
 
-                {/* Nested Routes */}
-                {/* 장점 자식 엘레멘트를 통시에 보여줄 수 있음 Outelet부분에 해당 컴포넌트가 보여짐 */}
-                {/* 여러 유사한 페이지 필요할 때 */}
                 <Route path='/about' element={<About />} >
                     <Route path='member' element={<div>맴버임</div>} />
                     <Route path='location' element={<div>위치정보</div>} />
@@ -58,11 +54,6 @@ function App() {
                     <Route path='one' element={<div>1주년 이벤트</div>} />
                     <Route path='two' element={<div>블랙 프라이데이</div>} />
                 </Route >
-
-                {/* <Route path='/about' element={<></>} />
-        <Route path='/about/member' element={<></>} />
-        <Route path='/about/loc' element={<></>} /> */}
-
             </Routes>
         </div>
     );

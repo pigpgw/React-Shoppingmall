@@ -50,7 +50,7 @@ function App() {
                 }
               </div>
             </div>
-            
+
             {!(getDataClick == 3) && (
               <button onClick={() => {
                 console.log("getDataClick", getDataClick);
@@ -59,7 +59,6 @@ function App() {
                 if (getDataClick == 0) {
                   axios.get('https://codingapple1.github.io/shop/data2.json')
                     .then((data) => {
-                      console.log("data", data.data);
                       let list = [...shoes, ...data.data];
                       setShoes(list);
                     })
@@ -69,7 +68,6 @@ function App() {
                 } else if (getDataClick == 1) {
                   axios.get('https://codingapple1.github.io/shop/data3.json')
                     .then((data) => {
-                      console.log("data", data.data);
                       let list = [...shoes, ...data.data];
                       setShoes(list);
                     })
@@ -86,11 +84,8 @@ function App() {
         }>
         </Route>
         <Route path='*' element={<div>없는 페이지</div>} />
-        {/* 여러개 페이지 만들기 */}
         <Route path='/detail/:id' element={<><Detail shoes={shoes} /></>} />
-
-        <Route path='/cart' element={<Cart/>} />
-
+        <Route path='/cart' element={<Cart />} />
       </Routes>
     </div>
   );
